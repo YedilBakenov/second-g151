@@ -1,42 +1,35 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="maket.html">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <div th:insert="links.html"></div>
 </head>
 <body>
-    <div th:insert="navbar.html"></div>
+<div layout:fragment="other">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>MODEL NAME</th>
+            <th>COST</th>
+            <th>COLOR</th>
+            <th>ENGINE</th>
+            <th>HORSE POWER</th>
+            <th style="width: 8%">DETAILS</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="car: ${cars}">
+            <td th:text="${car.id}"></td>
+            <td th:text="${car.modelName}"></td>
+            <td th:text="${car.cost}"></td>
+            <td th:text="${car.color}"></td>
+            <td th:text="${car.engine}"></td>
+            <td th:text="${car.horsePower}"></td>
+            <td><a class="btn btn-secondary btn-sm" th:href="@{'/get-car/' + ${car.id}}">DETAILS</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 
-    <div class="container mt-2">
-        <div class="row">
-            <div class="col-12">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>MODEL NAME</th>
-                            <th>COST</th>
-                            <th>COLOR</th>
-                            <th>ENGINE</th>
-                            <th>HORSE POWER</th>
-                            <th style="width: 8%">DETAILS</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="car: ${cars}">
-                            <td th:text="${car.id}"></td>
-                            <td th:text="${car.modelName}"></td>
-                            <td th:text="${car.cost}"></td>
-                            <td th:text="${car.color}"></td>
-                            <td th:text="${car.engine}"></td>
-                            <td th:text="${car.horsePower}"></td>
-                            <td> <a class="btn btn-secondary btn-sm" th:href="@{'/get-car/' + ${car.id}}">DETAILS</a> </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
 </body>
 </html>
